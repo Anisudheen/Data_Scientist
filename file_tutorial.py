@@ -45,10 +45,3 @@ with open("scores.csv","r") as f:
             player_scores[player] = [score]
 
 print(player_scores)
-
-for player, score_list in player_scores.items():
-    min_score=min(score_list)
-    max_score=max(score_list)
-    avg_score=sum(score_list)/len(score_list)
-
-    print(f"{player}==>Min:{min_score}, Max:{max_score}, Avg:{avg_score}")
