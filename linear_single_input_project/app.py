@@ -7,8 +7,8 @@ import streamlit as st
 # -----------------------------
 @st.cache_resource
 def load_model():
-    model = joblib.load("linear_model.pkl")
-    return model
+    model_path = os.path.join(os.path.dirname(__file__), "linear_model.pkl")
+    return joblib.load(model_path)
 
 model = load_model()
 
