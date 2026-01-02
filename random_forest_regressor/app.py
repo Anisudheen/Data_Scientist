@@ -2,21 +2,18 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
-
+import os
 st.set_page_config(page_title="Boston House Price Prediction", layout="centered")
+# folder where this app.py file lives
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-st.title("Boston House Price Prediction (Random Forest)")
+# if random_forest_model.pkl is in the same folder as app.py
+model_path = os.path.join(BASE_DIR, "random_forest_model.pkl")
 
-# ---- Load model and metadata ----
-import numpy as np
-import pandas as pd
-import streamlit as st
-import joblib
+# if it is inside a subfolder, e.g. "models"
+# model_path = os.path.join(BASE_DIR, "models", "random_forest_model.pkl")
 
-st.set_page_config(page_title="Boston House Price Prediction", layout="centered")
-
-# YOUR FILE ACTUALLY CONTAINS ONLY THE MODEL
-model = joblib.load("random_forest_model.pkl")   # <-- NO saved[...] here
+model = joblib.load(model_path)
 feature_names = ["CRIM","ZN","INDUS","CHAS","NOX",
                  "RM","AGE","DIS","RAD","TAX","PTRATIO","B","LSTAT"]
 
@@ -76,3 +73,4 @@ if st.button("Predict price"):
 
     st.subheader("Features used")
     st.json(values)
+
